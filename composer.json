@@ -1,0 +1,20 @@
+{
+  "name": "expenses/expenses.loc",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Oleksha",
+      "email": "deryabin_ov@magnit.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "expenses\\": "vendor/expenses",
+      "app\\": "app"
+    }
+  },
+  "require": {
+  }
+}
