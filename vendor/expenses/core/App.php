@@ -24,8 +24,8 @@ class App
     //set_time_limit(0);
     self::$app = Registry::instance();
     $this->getParams();
-    /*new ErrorHandler();
-    Router::dispatch($query);*/
+    new ErrorHandler();
+    /*Router::dispatch($query);*/
   }
 
   /**
