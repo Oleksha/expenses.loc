@@ -4,9 +4,11 @@
  * Дата создания = "25.12.2023"
  * Время создания = "22:18"
  **/
+
+use expenses\App;
+
 require_once dirname(__DIR__) . '/config/init.php';
 require_once LIBS . '/functions.php';
+require_once CONF . '/routes.php';
 
-new \expenses\App();
-
-throw new Exception('Страница не найдена', 505);
+new App();
