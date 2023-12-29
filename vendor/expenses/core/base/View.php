@@ -88,7 +88,7 @@ class View
   }
 
   /**
-   * метод формирующий страницу на основании данных $data
+   * Метод формирующий страницу на основании данных $data
    * @param $data array
    */
   public function render($data)
@@ -119,7 +119,7 @@ class View
         // и подключаем шаблон
         require_once $layoutFile;
       } else {   // если файла нет ошибка
-        throw new \Exception("Шаблона {$this->layout} не найден", 500);
+        throw new \Exception("Шаблон {$this->layout} не найден", 500);
       }
     }
   }

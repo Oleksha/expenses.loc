@@ -10,3 +10,5 @@
 --------------------
 [2023-12-29 13:54:54] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
+[2023-12-29 16:11:57] Текст ошибки: Шаблона expenses не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 122
+--------------------
