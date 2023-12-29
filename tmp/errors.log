@@ -8,3 +8,5 @@
 --------------------
 [2023-12-27 09:55:48] Текст ошибки: Call to undefined method app\controllers\MainController::getView() | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 75
 --------------------
+[2023-12-29 13:54:54] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------

@@ -10,9 +10,12 @@ namespace app\controllers;
 /**
  * Контроллер главной страницы приложения
  */
-class MainController
+class MainController extends AppController
 {
 
+  /**
+   * Вывод страницы по умолчанию
+   */
   public function indexAction()
   {
     echo __METHOD__;
