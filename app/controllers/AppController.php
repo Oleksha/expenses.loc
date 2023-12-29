@@ -7,20 +7,22 @@
 
 namespace app\controllers;
 
+use app\models\AppModel;
 use expenses\base\Controller;
 
 /**
- * Class AppController
- * @package app\controllers
  * Контроллер этого приложения
  */
 class AppController extends Controller
 {
 
+  /**
+   * Конструктор класса
+   */
   public function __construct($route)
   {
     parent::__construct($route);
-    //new AppModel();
+    new AppModel();
   }
 
 }

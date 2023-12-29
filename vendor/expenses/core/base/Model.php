@@ -7,6 +7,8 @@
 
 namespace expenses\base;
 
+use expenses\Db;
+
 /**
  * Класс отвечающий за работу с данными
  */

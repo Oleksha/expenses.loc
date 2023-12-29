@@ -12,3 +12,29 @@
 --------------------
 [2023-12-29 16:11:57] Текст ошибки: Шаблона expenses не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 122
 --------------------
+[2023-12-29 21:09:39] Текст ошибки: Class 'expenses\base\Db' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\Model.php | Строка: 42
+--------------------
+[2023-12-29 21:11:14] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 28
+--------------------
+[2023-12-29 21:12:32] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 30
+--------------------
+[2023-12-29 21:12:34] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 30
+--------------------
+[2023-12-29 21:12:50] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 29
+--------------------
+[2023-12-29 21:14:13] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 29
+--------------------
+[2023-12-29 21:14:17] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 29
+--------------------
+[2023-12-29 21:14:22] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 29
+--------------------
+[2023-12-29 21:14:22] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-29 21:15:31] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 31
+--------------------
+[2023-12-29 21:15:56] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 31
+--------------------
+[2023-12-29 21:16:34] Текст ошибки: Class 'expenses\R' not found | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 31
+--------------------
+[2023-12-29 21:16:53] Текст ошибки: Нет соединения с БД | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Db.php | Строка: 33
+--------------------
