@@ -89,8 +89,7 @@ class Router
    */
   public static function matchRoute($url)
   {
-    foreach (self::$routes as $pattern => $route)
-    {
+    foreach (self::$routes as $pattern => $route) {
       if (preg_match("#{$pattern}#i", (string)$url, $matches)) {
         // если найдено соответствие
         foreach ($matches as $k => $v) {   // проходимся по всему массиву
@@ -142,20 +141,16 @@ class Router
    */
   protected static function removeQueryString($url)
   {
-    if ($url)
-    {
+    if ($url) {
       // если параметр не пуст разбиваем на две части
       // неявные и явные GET-параметры
       $params = explode('&', $url, 2);
       // Проверяем первую часть
-      if (false === strpos($params[0], '='))
-      {
+      if (false === strpos($params[0], '=')) {
         // если в ней отсутствует знак =
         // возвращаем эту часть без концевого слеша
         return rtrim($params[0], '/');
-      }
-      else
-      {
+      } else {
         return '';
       }
     }
