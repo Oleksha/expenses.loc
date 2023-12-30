@@ -1,0 +1,14 @@
+@font-face {
+  font-family:Exo2-Light;
+  src:url('../fonts/Exo2-Light.woff') format('woff'), url('../fonts/Exo2-Light.woff2') format('woff2');
+}
+
+@font-face{
+  font-family:Exo2-Regular;
+  src:url('../fonts/Exo2-Regular.woff') format('woff'),url('../fonts/Exo2-Regular.woff2') format('woff2');
+}
+
+@font-face{
+  font-family:Exo2-Bold;
+  src:url('../fonts/Exo2-Bold.woff') format('woff'),url('../fonts/Exo2-Bold.woff2') format('woff2');
+}
