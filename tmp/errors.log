@@ -4,3 +4,11 @@
 --------------------
 [2023-12-30 13:18:10] Текст ошибки: Контроллер app\controllers\BudgetController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
 --------------------
+[2023-12-30 13:24:48] Текст ошибки: Контроллер app\controllers\UserController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-30 15:10:17] Текст ошибки: Файл вида F:\OSPanel\domains\expenses.loc/app/views/User/login.php не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 107
+--------------------
+[2023-12-30 15:13:30] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-30 15:14:13] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------

@@ -20,3 +20,10 @@ select.visually-hidden {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+/* Кнопка вызова выпадающего списка главного меню */
+.my-style .link-dark,
+.my-style .link-dark:focus,
+.my-style .link-dark:hover {
+  color: #ffffff !important;
+}
+/* Кнопка вызова выпадающего списка главного меню */

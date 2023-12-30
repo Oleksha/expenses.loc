@@ -4,6 +4,9 @@
  * Дата создания = "29.12.2023"
  * Время создания = "15:18"
  **/
+if (!isset($_SESSION['user'])) {
+  header('Location: /user/login');
+}
 ?>
 <!doctype html>
 <html lang="ru" class="h-100">
@@ -36,28 +39,13 @@
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="<?=PATH;?>" class="nav-link px-2
-                    <?php
-            echo ($this->route['controller'] == 'Main') ? ' text-secondary' : ' text-white';
-            ?>
-                    ">Главная</a></li>
-          <li><a href="<?=PATH;?>/partner" class="nav-link px-2
-                    <?php
-            echo ($this->route['controller'] == 'Partner') ? ' text-secondary' : ' text-white';
-            ?>
-                    ">Контрагенты</a></li>
-          <li><a href="<?=PATH;?>/budget" class="nav-link px-2
-                    <?php
-            echo ($this->route['controller'] == 'Budget') ? ' text-secondary' : ' text-white';
-            ?>
-                    ">Бюджет</a></li>
+            <?php echo ($this->route['controller'] == 'Main') ? ' text-secondary' : ' text-white'; ?>">Главная</a></li>
+          <li><a href="<?=PATH;?>/partner" class="nav-link px-2 <?php echo ($this->route['controller'] == 'Partner') ? ' text-secondary' : ' text-white'; ?>">Контрагенты</a></li>
+          <li><a href="<?=PATH;?>/budget" class="nav-link px-2 <?php
+            echo ($this->route['controller'] == 'Budget') ? ' text-secondary' : ' text-white'; ?>">Бюджет</a></li>
           <?php if (isset($_SESSION['user'])): ?>
             <?php if ($_SESSION['user']['role'] == 'admin') : ?>
               <li><a href="/admin" class="nav-link px-2 text-white">Администрирование</a></li>
-              <li><a href="/import" class="nav-link px-2
-                        <?php
-                echo ($this->route['controller'] == 'Import' || $this->route['prefix'] == 'Admin') ? ' text-secondary' : ' text-white';
-                ?>
-                        ">Импорт БД</a></li>
             <?php endif; ?>
           <?php endif; ?>
         </ul>
