@@ -19,6 +19,7 @@ if (!isset($_SESSION['user'])) {
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?= $this->getMeta(); ?>
   <link rel="stylesheet" href="assets/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/DataTables/datatables.min.CSS">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -88,6 +89,7 @@ if (!isset($_SESSION['user'])) {
     </div>
   </footer>
   <!-- Подвал сайта -->
+  <script type="text/javascript" src="assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="assets/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
   <script>
     let path = '<?=PATH;?>';

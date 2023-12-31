@@ -12,3 +12,31 @@
 --------------------
 [2023-12-30 15:14:13] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
+[2023-12-30 16:06:10] Текст ошибки: Контроллер app\controllers\PartnerController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-30 16:06:11] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-30 16:06:19] Текст ошибки: Контроллер app\controllers\BudgetController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-30 16:06:22] Текст ошибки: Контроллер app\controllers\admin\MainController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-31 14:12:58] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-31 16:28:42] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Main\index.php | Строка: 64
+--------------------
+[2023-12-31 16:29:57] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-31 16:38:51] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-31 16:40:51] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-31 16:56:31] Текст ошибки: Контроллер app\controllers\PartnerController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-31 16:56:31] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2023-12-31 16:58:30] Текст ошибки: Контроллер app\controllers\PartnerController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2023-12-31 16:58:35] Текст ошибки: Метод app\controllers\MainController::payAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2023-12-31 16:58:43] Текст ошибки: Метод app\controllers\MainController::payAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
