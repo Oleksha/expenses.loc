@@ -7,11 +7,15 @@
 
 namespace app\controllers;
 
-use app\controllers\AppController;
 use app\models\Budget;
 use app\models\BudgetItems;
 use app\models\Partner;
 use app\models\Payment;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\{Alignment, Border, Fill, NumberFormat};
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * Класс обработки Бюджетных Операций (БО)
@@ -187,6 +191,367 @@ class BudgetController extends AppController
       // Если запрос пришел АЯКСом
       $this->loadView('edit', compact('budget', 'budget_items'));
     }
+    redirect();
+  }
+
+  /**
+   * Функция вывода отчета
+   * @return void
+   * @throws Exception
+   * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+   */
+  public function reportAction()
+  {
+    $month = $_GET['m'] ?? null;
+    $year = $_GET['y'] ?? null;
+    $monthsList = [
+      '01' => 'ЯНВАРЬ', '02' => 'ФЕВРАЛЬ', '03' => 'МАРТ', '04' => 'АПРЕЛЬ', '05' => 'МАЙ', '06' => 'ИЮНЬ',
+      '07' => 'ИЮЛЬ', '08' => 'АВГУСТ', '09' => 'СЕНТЯБРЬ', '10' => 'ОКТЯБРЬ', '11' => 'НОЯБРЬ', '12' => 'ДЕКАБРЬ'];
+    //Создаем экземпляр класса электронной таблицы
+    $spreadsheet = new Spreadsheet();
+    //Получаем текущий активный лист
+    $sheet = $spreadsheet->getActiveSheet();
+    //Установка ширины столбца
+    $sheet->getColumnDimension('A')->setWidth(35);
+    $sheet->getColumnDimension('B')->setWidth(70);
+    $sheet->getColumnDimension('C')->setWidth(14);
+    $sheet->getColumnDimension('D')->setWidth(14);
+    $sheet->getColumnDimension('E')->setWidth(14);
+    $sheet->getStyle('C:E')->applyFromArray([
+      'alignment' => [
+        'horizontal' => Alignment::HORIZONTAL_CENTER,
+        'vertical' => Alignment::VERTICAL_CENTER,
+        'wrapText' => true,
+      ]
+    ]);
+    $sheet->getStyle('C:E')->getNumberFormat()
+      ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+    //Установка высоты для строки
+    $sheet->getRowDimension(1)->setRowHeight(23.25);
+    // Записываем в ячейку A1 данные
+    $sheet->setCellValue('A1', 'Сводные данные по бюджету ' . $monthsList[$month] . ' ' . $year);
+    $sheet->setCellValue('A2', 'на ' . date('j.m.Y'));
+    // Получаем ячейку для которой будем устанавливать стили
+    $sheet->getStyle('A')->applyFromArray([
+      'alignment' => [
+        'vertical' => Alignment::VERTICAL_CENTER,
+        'wrapText' => true,
+      ]
+    ]);
+    $sheet->getStyle('B')->applyFromArray([
+      'alignment' => [
+        'vertical' => Alignment::VERTICAL_CENTER,
+        'wrapText' => true,
+      ]
+    ]);
+    $sheet->getStyle('A1')->applyFromArray([
+      'font' => [
+        'name' => 'Calibri',
+        'size' => 18,
+        'bold' => true
+      ],
+      'alignment' => [
+        'horizontal' => Alignment::HORIZONTAL_CENTER,
+        'vertical' => Alignment::VERTICAL_CENTER,
+        'wrapText' => true,
+      ]
+    ]);
+    $sheet->getStyle('A2')->applyFromArray([
+      'alignment' => [
+        'horizontal' => Alignment::HORIZONTAL_CENTER,
+      ]
+    ]);
+    $sheet->getStyle('A3:E3')->applyFromArray([
+      'font' => [
+        'name' => 'Calibri',
+        'size' => 12,
+        'bold' => true
+      ],
+      'alignment' => [
+        'horizontal' => Alignment::HORIZONTAL_CENTER,
+        'vertical' => Alignment::VERTICAL_CENTER,
+        'wrapText' => true,
+      ]
+    ]);
+    // Заголовок
+    $sheet->setCellValue('A3', 'Статья расхода');
+    $sheet->setCellValue('B3', 'Комментарий');
+    $sheet->setCellValue('C3', 'Заложено');
+    $sheet->setCellValue('D3', 'Оплачено');
+    $sheet->setCellValue('E3', 'Остаток');
+    $sheet->getStyle('A3:E3')->getFill()
+      ->setFillType(Fill::FILL_SOLID)
+      ->getStartColor()->setARGB('00DCE6F1');
+    // Получение данных для вывода отчета
+    $scenario = $year . '-' . $month . '-01';
+    $budget_model = new Budget();
+    $bos = $budget_model->getForReport($scenario);
+    $row = 4;
+    $start = 4;
+    $result = [];
+    foreach ($bos as $val) {
+      $result[$val['name_budget_item']][] = $val;
+    }
+    foreach ($result as $key => $value) {
+      $num_str = 0;
+      $sheet->setCellValue('A' . $row, $key);
+      foreach ($value as $item) {
+        $richText = new RichText();
+        $payable = $richText->createTextRun($item['number']);
+        $payable->getFont()->setBold(true);
+        $payable->getFont()->setItalic(true);
+        $richText->createText(' - ' . $item['description']);
+        $sheet->setCellValue('B' . ($row + $num_str), $richText);
+        $sheet->setCellValue('C' . ($row + $num_str), $item['summa']);
+        $sheet->setCellValue('D' . ($row + $num_str), (string)$item['coast']);
+        $summa = (float)$item['summa'] - $item['coast'];
+        $sheet->setCellValue('E' . ($row + $num_str), (string)$summa);
+        if ($item['summa'] - $item['coast'] != 0) {
+          $sheet->getStyle('E' . ($row + $num_str))->getFill()
+            ->setFillType(Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('00CCFFCC');
+          $sheet->getStyle('E' . ($row + $num_str))->applyFromArray([
+            'font' => [
+              'bold' => true
+            ]
+          ]);
+        }
+        $num_str += 1;
+      }
+      // Объединяем ячейки
+      if ($num_str > 1) {
+        $sheet->mergeCells('A' . $row . ':A' . ($row + $num_str - 1));
+      }
+      $row += $num_str;
+    }
+    $sheet->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+      'font' => [
+        'bold' => true
+      ]
+    ]);
+    $sheet->getStyle('A' . $row . ':E' . $row)->getFill()
+      ->setFillType(Fill::FILL_SOLID)
+      ->getStartColor()->setARGB('00DCE6F1');
+    $sheet->setCellValue('A' . $row, 'Общий итог');
+    $sheet->setCellValue('C' . $row, '=SUM(C' . $start . ':C' . ($row - 1) . ')');
+    $sheet->setCellValue('D' . $row, '=SUM(D' . $start . ':D' . ($row - 1) . ')');
+    $sheet->setCellValue('E' . $row, '=SUM(E' . $start . ':E' . ($row - 1) . ')');
+    $sheet->getStyle('A' . ($start - 1) . ':E' . $row)->applyFromArray([
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => Border::BORDER_THIN,
+        ],
+      ],
+    ]);
+    //Объединяем ячейки
+    $sheet->mergeCells('A1:E1');
+    $sheet->getStyle('A2')->applyFromArray([
+      'font' => [
+        'bold' => true
+      ]
+    ]);
+    $sheet->mergeCells('A2:E2');
+    // установки для печати
+    $sheet->getPageSetup()->setFitToWidth(1);
+    $sheet->getPageSetup()->setFitToHeight(1);
+    $sheet->getPageSetup()->setHorizontalCentered(true); // Центрирование при печати
+    $sheet->getPageMargins()->setTop(0);
+    $sheet->getPageMargins()->setRight(0);
+    $sheet->getPageMargins()->setLeft(0);
+    $sheet->getPageMargins()->setBottom(0);
+
+    $writer = new Xlsx($spreadsheet);
+    // Сохраняем файл в текущей папке, в которой выполняется скрипт.
+    // Чтобы указать другую папку для сохранения.
+    // Прописываем полный путь до папки и указываем имя файла
+    $writer->save(ROOT . '\Расходы.xlsx');
+    redirect();
+  }
+
+  /**
+   * Функция вывода отчета за год
+   * @return void
+   * @throws Exception
+   * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+   */
+  public function reportYearAction()
+  {
+    $year = $_GET['y'] ?? null;
+    $months = array('01','02','03','04','05','06','07','08','09','10','11','12');
+    $monthsList = [
+      '01' => 'ЯНВАРЬ', '02' => 'ФЕВРАЛЬ', '03' => 'МАРТ', '04' => 'АПРЕЛЬ', '05' => 'МАЙ', '06' => 'ИЮНЬ',
+      '07' => 'ИЮЛЬ', '08' => 'АВГУСТ', '09' => 'СЕНТЯБРЬ', '10' => 'ОКТЯБРЬ', '11' => 'НОЯБРЬ', '12' => 'ДЕКАБРЬ'];
+    //Создаем экземпляр класса электронной таблицы
+    $spreadsheet = new Spreadsheet();
+    $myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'ЯНВАРЬ');
+    $spreadsheet->addSheet($myWorkSheet, 0);
+    $spreadsheet->removeSheetByIndex(1);
+    $list = 0;
+    foreach ($months as $month) {
+      if ($list > 0) {
+        $myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, $monthsList[$month]);
+        $spreadsheet->addSheet($myWorkSheet, $list);
+      }
+      $spreadsheet->setActiveSheetIndex($list);
+      //Получаем текущий активный лист
+      $sheet = $spreadsheet->getSheet($list);
+      //Установка ширины столбца
+      $sheet->getColumnDimension('A')->setWidth(35);
+      $sheet->getColumnDimension('B')->setWidth(70);
+      $sheet->getColumnDimension('C')->setWidth(14);
+      $sheet->getColumnDimension('D')->setWidth(14);
+      $sheet->getColumnDimension('E')->setWidth(14);
+      $sheet->getStyle('C:E')->applyFromArray([
+        'alignment' => [
+          'horizontal' => Alignment::HORIZONTAL_CENTER,
+          'vertical' => Alignment::VERTICAL_CENTER,
+          'wrapText' => true,
+        ]
+      ]);
+      $sheet->getStyle('C:E')->getNumberFormat()
+        ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+      //Установка высоты для строки
+      $sheet->getRowDimension(1)->setRowHeight(23.25);
+      // Записываем в ячейку A1 данные
+      $sheet->setCellValue('A1', 'Сводные данные по бюджету ' . $monthsList[$month] . ' ' . $year);
+      $sheet->setCellValue('A2', 'на ' . date('j.m.Y'));
+      // Получаем ячейку для которой будем устанавливать стили
+      $sheet->getStyle('A')->applyFromArray([
+        'alignment' => [
+          'vertical' => Alignment::VERTICAL_CENTER,
+          'wrapText' => true,
+        ]
+      ]);
+      $sheet->getStyle('B')->applyFromArray([
+        'alignment' => [
+          'vertical' => Alignment::VERTICAL_CENTER,
+          'wrapText' => true,
+        ]
+      ]);
+      $sheet->getStyle('A1')->applyFromArray([
+        'font' => [
+          'name' => 'Calibri',
+          'size' => 18,
+          'bold' => true
+        ],
+        'alignment' => [
+          'horizontal' => Alignment::HORIZONTAL_CENTER,
+          'vertical' => Alignment::VERTICAL_CENTER,
+          'wrapText' => true,
+        ]
+      ]);
+      $sheet->getStyle('A2')->applyFromArray([
+        'font' => [
+          'bold' => true
+        ],
+        'alignment' => [
+          'horizontal' => Alignment::HORIZONTAL_CENTER,
+        ]
+      ]);
+      //Объединяем ячейки
+      $sheet->mergeCells('A1:E1');
+      $sheet->mergeCells('A2:E2');
+
+      // Заголовок
+      $sheet->setCellValue('A3', 'Статья расхода');
+      $sheet->setCellValue('B3', 'Комментарий');
+      $sheet->setCellValue('C3', 'Заложено');
+      $sheet->setCellValue('D3', 'Оплачено');
+      $sheet->setCellValue('E3', 'Остаток');
+      $sheet->getStyle('A3:E3')->getFill()
+        ->setFillType(Fill::FILL_SOLID)
+        ->getStartColor()->setARGB('00DCE6F1');
+      // Получение данных для вывода отчета
+      $scenario = $year . '-' . $month . '-01';
+      $budget = new Budget();
+      $bos = $budget->getForReport($scenario);
+      if (!empty($bos)) {
+        $row = 4;
+        $start = 4;
+        $result = [];
+        foreach ($bos as $val) {
+          $result[$val['name_budget_item']][] = $val;
+        }
+        foreach ($result as $key => $value) {
+          $num_str = 0;
+          $sheet->setCellValue('A' . $row, $key);
+          foreach ($value as $item) {
+            $richText = new RichText();
+            $payable = $richText->createTextRun($item['number']);
+            $payable->getFont()->setBold(true);
+            $payable->getFont()->setItalic(true);
+            $richText->createText(' - ' . $item['description']);
+            $sheet->setCellValue('B' . ($row + $num_str), $richText);
+            $sheet->setCellValue('C' . ($row + $num_str), $item['summa']);
+            $sheet->setCellValue('D' . ($row + $num_str), (string)$item['coast']);
+            $summa = (float)$item['summa'] - $item['coast'];
+            $sheet->setCellValue('E' . ($row + $num_str), (string)$summa);
+            if ($item['summa'] - $item['coast'] != 0) {
+              $sheet->getStyle('E' . ($row + $num_str))->getFill()
+                ->setFillType(Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('00CCFFCC');
+              $sheet->getStyle('E' . ($row + $num_str))->applyFromArray([
+                'font' => [
+                  'bold' => true
+                ]
+              ]);
+            }
+            $num_str += 1;
+          }
+          // Объединяем ячейки
+          if ($num_str > 1) {
+            $sheet->mergeCells('A' . $row . ':A' . ($row + $num_str - 1));
+          }
+          $row += $num_str;
+        }
+        $sheet->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+          'font' => [
+            'bold' => true
+          ]
+        ]);
+        $sheet->getStyle('A' . $row . ':E' . $row)->getFill()
+          ->setFillType(Fill::FILL_SOLID)
+          ->getStartColor()->setARGB('00DCE6F1');
+        $sheet->setCellValue('A' . $row, 'Общий итог');
+        $sheet->setCellValue('C' . $row, '=SUM(C' . $start . ':C' . ($row - 1) . ')');
+        $sheet->setCellValue('D' . $row, '=SUM(D' . $start . ':D' . ($row - 1) . ')');
+        $sheet->setCellValue('E' . $row, '=SUM(E' . $start . ':E' . ($row - 1) . ')');
+        $sheet->getStyle('A' . ($start - 1) . ':E' . $row)->applyFromArray([
+          'borders' => [
+            'allBorders' => [
+              'borderStyle' => Border::BORDER_THIN,
+            ],
+          ],
+        ]);
+
+        // установки для печати
+        $sheet->getPageSetup()->setFitToWidth(1);
+        $sheet->getPageSetup()->setFitToHeight(1);
+        $sheet->getPageSetup()->setHorizontalCentered(true); // центрирование при печати
+        $sheet->getPageMargins()->setTop(0);
+        $sheet->getPageMargins()->setRight(0);
+        $sheet->getPageMargins()->setLeft(0);
+        $sheet->getPageMargins()->setBottom(0);
+      }
+      $sheet->getStyle('A3:E3')->applyFromArray([
+        'font' => [
+          'name' => 'Calibri',
+          'size' => 12,
+          'bold' => true
+        ],
+        'alignment' => [
+          'horizontal' => Alignment::HORIZONTAL_CENTER,
+          'vertical' => Alignment::VERTICAL_CENTER,
+          'wrapText' => true,
+        ]
+      ]);
+      $list += 1;
+    }
+    $writer = new Xlsx($spreadsheet);
+    // Сохраняем файл в текущей папке, в которой выполняется скрипт.
+    // Чтобы указать другую папку для сохранения.
+    // Прописываем полный путь до папки и указываем имя файла
+    $writer->save(ROOT . '\Расходы_за_год.xlsx');
     redirect();
   }
 

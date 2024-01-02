@@ -128,3 +128,35 @@
 --------------------
 [2024-01-02 11:18:19] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
+[2024-01-02 11:30:56] Текст ошибки: Метод app\controllers\BudgetController::reportAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-02 11:30:56] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:50:22] Текст ошибки: Class 'app\controllers\Fill' not found | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 285
+--------------------
+[2024-01-02 11:56:14] Текст ошибки: Call to undefined method app\models\Budget::getPaymentCoast() | Файл: F:\OSPanel\domains\expenses.loc\app\models\Budget.php | Строка: 70
+--------------------
+[2024-01-02 12:15:36] Текст ошибки: trim() expects parameter 1 to be string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\models\Budget.php | Строка: 96
+--------------------
+[2024-01-02 12:16:40] Текст ошибки: Class 'app\controllers\RichText' not found | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 302
+--------------------
+[2024-01-02 12:17:03] Текст ошибки: Class 'app\controllers\Border' not found | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 345
+--------------------
+[2024-01-02 12:20:13] Текст ошибки: Файл вида F:\OSPanel\domains\expenses.loc/app/views/Budget/report.php не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 107
+--------------------
+[2024-01-02 12:30:46] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 12:35:26] Текст ошибки: syntax error, unexpected '*' | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 346
+--------------------
+[2024-01-02 12:39:35] Текст ошибки: Could not close zip file F:\OSPanel\domains\expenses.loc\Расходы.xlsx. | Файл: F:\OSPanel\domains\expenses.loc\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx.php | Строка: 399
+--------------------
+[2024-01-02 12:40:34] Текст ошибки: Could not close zip file F:\OSPanel\domains\expenses.loc\Расходы.xlsx. | Файл: F:\OSPanel\domains\expenses.loc\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx.php | Строка: 399
+--------------------
+[2024-01-02 12:40:48] Текст ошибки: Could not close zip file F:\OSPanel\domains\expenses.loc\Расходы.xlsx. | Файл: F:\OSPanel\domains\expenses.loc\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx.php | Строка: 399
+--------------------
+[2024-01-02 12:40:49] Текст ошибки: Could not close zip file F:\OSPanel\domains\expenses.loc\Расходы.xlsx. | Файл: F:\OSPanel\domains\expenses.loc\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx.php | Строка: 399
+--------------------
+[2024-01-02 12:42:17] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 13:08:53] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
