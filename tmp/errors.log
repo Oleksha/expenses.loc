@@ -40,3 +40,91 @@
 --------------------
 [2023-12-31 16:58:43] Текст ошибки: Метод app\controllers\MainController::payAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
 --------------------
+[2023-12-31 18:42:32] Текст ошибки: Контроллер app\controllers\BudgetController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-01 11:21:00] Текст ошибки: Контроллер app\controllers\BudgetController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-01 11:21:00] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-01 11:22:43] Текст ошибки: Метод app\controllers\BudgetController::indexAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-01 12:08:04] Текст ошибки: Return value of app\models\Budget::getBudget() must be of the type array, bool returned | Файл: F:\OSPanel\domains\expenses.loc\app\models\Budget.php | Строка: 53
+--------------------
+[2024-01-01 12:09:35] Текст ошибки: Return value of app\models\Budget::getBudget() must be of the type array, bool returned | Файл: F:\OSPanel\domains\expenses.loc\app\models\Budget.php | Строка: 53
+--------------------
+[2024-01-01 13:01:57] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 69 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 91
+--------------------
+[2024-01-01 13:03:23] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 69 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 91
+--------------------
+[2024-01-01 13:03:25] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 69 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 91
+--------------------
+[2024-01-01 13:03:26] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 69 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 91
+--------------------
+[2024-01-01 13:12:48] Текст ошибки: Файл вида F:\OSPanel\domains\expenses.loc/app/views/Budget/index.php не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 107
+--------------------
+[2024-01-01 13:14:37] Текст ошибки: number_format() expects parameter 1 to be float, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 97
+--------------------
+[2024-01-01 15:33:33] Текст ошибки: number_format() expects parameter 1 to be float, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 98
+--------------------
+[2024-01-01 15:33:33] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-01 15:35:23] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 98
+--------------------
+[2024-01-01 15:35:32] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 98
+--------------------
+[2024-01-01 15:35:33] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-01 15:36:41] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 98
+--------------------
+[2024-01-01 15:37:18] Текст ошибки: number_format() expects parameter 1 to be float, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 99
+--------------------
+[2024-01-01 15:37:39] Текст ошибки: number_format() expects parameter 1 to be float, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\index.php | Строка: 99
+--------------------
+[2024-01-01 15:44:42] Текст ошибки: Метод app\controllers\BudgetController::viewAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-01 15:44:42] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-01 15:50:10] Текст ошибки: Метод app\controllers\BudgetController::viewAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-01 16:01:36] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
+--------------------
+[2024-01-01 16:04:42] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
+--------------------
+[2024-01-01 16:07:53] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
+--------------------
+[2024-01-01 16:07:54] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
+--------------------
+[2024-01-01 16:08:02] Текст ошибки: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in where clause is ambiguous | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
+--------------------
+[2024-01-01 16:08:02] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 09:33:16] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 09:38:53] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 117 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 84
+--------------------
+[2024-01-02 09:39:55] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 117 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 84
+--------------------
+[2024-01-02 09:39:57] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 117 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 84
+--------------------
+[2024-01-02 09:39:58] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 117 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 84
+--------------------
+[2024-01-02 09:57:53] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\view.php | Строка: 43
+--------------------
+[2024-01-02 09:59:39] Текст ошибки: Метод app\controllers\BudgetController::editAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-02 09:59:50] Текст ошибки: number_format() expects parameter 1 to be float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Budget\view.php | Строка: 75
+--------------------
+[2024-01-02 11:06:50] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:14:13] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:16:08] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:16:15] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:16:41] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:16:57] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-02 11:18:19] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------

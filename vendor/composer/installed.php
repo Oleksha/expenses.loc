@@ -3,7 +3,7 @@
         'name' => 'expenses/expenses.loc',
         'pretty_version' => 'dev-origin',
         'version' => 'dev-origin',
-        'reference' => '5e4b5ef25b308281c2a60c7a8fc472fd0a30b9ff',
+        'reference' => '0293634e8b2e3a10327bc899ad33543785d3f07e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'expenses/expenses.loc' => array(
             'pretty_version' => 'dev-origin',
             'version' => 'dev-origin',
-            'reference' => '5e4b5ef25b308281c2a60c7a8fc472fd0a30b9ff',
+            'reference' => '0293634e8b2e3a10327bc899ad33543785d3f07e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

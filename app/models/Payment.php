@@ -42,13 +42,21 @@ class Payment extends AppModel
    * @param int $id идентификатор заявки
    * @return array|false
    */
-  public function getPayment($id = false)
+  public function getPayment($id = false, $id_bo = false)
   {
     if ($id) {
       $payments = R::getAssocRow('SELECT * FROM payment WHERE id = ?', [$id]);
       if (!empty($payments)) return $payments[0];
     } else {
-      $payments = R::getAssocRow('SELECT * FROM payment');
+      if ($id_bo) {
+        $payments_all = R::getAssocRow('SELECT * FROM payment');
+        foreach ($payments_all as $item) {
+          $ids = explode(';', $item['bos_id']);
+          if (in_array($id_bo, $ids)) $payments[] = $item;
+        }
+      } else {
+        $payments = R::getAssocRow('SELECT * FROM payment');
+      }
       if (!empty($payments)) return $payments;
     }
     return false;
