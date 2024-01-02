@@ -160,3 +160,7 @@
 --------------------
 [2024-01-02 13:08:53] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
+[2024-01-02 13:26:12] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_array_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 124 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 138
+--------------------
+[2024-01-02 13:26:49] Текст ошибки: Argument 1 passed to app\controllers\BudgetController::get_array_sum() must be of the type array, bool given, called in F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php on line 124 | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\BudgetController.php | Строка: 138
+--------------------

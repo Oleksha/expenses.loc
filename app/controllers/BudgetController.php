@@ -119,9 +119,14 @@ class BudgetController extends AppController
     $bo = $budget_model->getBudget($id_bo);
     $payments = $payment_model->getPayment(null, $id_bo);
     // добавляем в массив дополнительные данные
-    if ($payments) $bo['payment'] = $this->get_sum($payments, $_GET['id'], $bo['vat']);
-    else $bo['payment'] = 0.00;
-    $bo['pay_arr'] = $this->get_array_sum($payments, $_GET['id'], $bo['vat']);
+    if ($payments) {
+      $bo['payment'] = $this->get_sum($payments, $_GET['id'], $bo['vat']);
+      $bo['pay_arr'] = $this->get_array_sum($payments, $_GET['id'], $bo['vat']);
+    }
+    else {
+      $bo['payment'] = 0.00;
+      $bo['pay_arr'] = [];
+    }
     // формируем метатеги для страницы
     $this->setMeta("Просмотр бюджетной операции {$bo['number']}", 'Описание...', 'Ключевые слова...');
     // Передаем полученные данные в вид
