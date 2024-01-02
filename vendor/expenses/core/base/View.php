@@ -69,7 +69,7 @@ class View
    * @param string $view Вид встраиваемый в шаблон
    * @param array $meta метаданнные для страницы
    */
-  public function __construct($route, $layout = '', $view = '', $meta)
+  public function __construct($route, $meta, $layout = '', $view = '')
   {
     $this->route = $route;
     $this->controller = $route['controller'];
