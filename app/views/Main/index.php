@@ -41,7 +41,11 @@
           } else {
             if ($item['delay']) {
               $date_elements = explode('-', $item['date']);
-              $date = new DateTime($item['date']);
+              try {
+                $date = new DateTime($item['date']);
+              } catch (Exception $e) {
+                throw new \Exception("Невозможно создать дату", 199);
+              }
               $delay = (int)$item['delay'];
               date_add($date, date_interval_create_from_date_string("$delay days"));
               $pay = date_format($date, 'Y-m-d');
@@ -147,7 +151,7 @@
   $(function () {
     new DataTable('#main_index', {
       order: [ 3, "asc" ],
-      createdRow: function ( row, data, index ) {
+      createdRow: function ( row, data ) {
         let str = data[4];
         if ( str.substring(0, 16) === "Подано на оплату" ) {
           $('td', row).eq(3).addClass('table-warning');

@@ -7,7 +7,6 @@
 
 namespace app\controllers;
 
-use app\controllers\AppController;
 use app\models\User;
 
 /**
@@ -23,7 +22,8 @@ class UserController extends AppController
   /**
    * Action страницы авторизации
    */
-  public function loginAction() {
+  public function loginAction(): void
+  {
     // проверяем приходят на страницу какие-нибудь данные или нет
     if (!empty($_POST)) {
       // если данные пришли, создаем объект пользователя
@@ -41,7 +41,8 @@ class UserController extends AppController
   /**
    * Action страницы регистрации
    */
-  public function signupAction() {
+  public function signupAction(): void
+  {
     if (!empty($_POST)) {
       $user_models = new User();
       $data = $_POST;
@@ -68,7 +69,8 @@ class UserController extends AppController
   /**
    * Action страницы выхода текущего пользователя
    */
-  public function logoutAction() {
+  public function logoutAction(): void
+  {
     if (isset($_SESSION['user'])) unset($_SESSION['user']);
     redirect();
   }

@@ -63,10 +63,10 @@ $scenario = $_monthsList[date_format($date, "n")].'&nbsp;'.date_format($date, "Y
       disable_search_threshold: 10,
       width: "100%"
     }).change(function() {
-      checkInputfield(this);
+      checkInputField(this);
     }).triggerHandler('change');
 
-    function checkInputfield(my_choices) {
+    function checkInputField(my_choices) {
       if ($(my_choices).val()) {
         $(my_choices).removeClass('is-invalid');
         $(my_choices).addClass('is-valid');

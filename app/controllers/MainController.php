@@ -20,7 +20,7 @@ class MainController extends AppController
   /**
    * Вывод страницы по умолчанию
    */
-  public function indexAction()
+  public function indexAction(): void
   {
     // Создаем объекты для связи с БД.
     $partners = new Partner();      // Для контрагентов.
@@ -56,7 +56,7 @@ class MainController extends AppController
    * Функция обработки нажатия кнопки Ввод оплаты
    * @return void
    */
-  public function payAction()
+  public function payAction(): void
   {
     if (!empty($_POST)) {
       // Создаем объекты для работы с БД
@@ -86,7 +86,7 @@ class MainController extends AppController
    * @param string $payment_id идентификатор прихода
    * @return mixed
    */
-  public function getDatePayment(string $payment_id)
+  public function getDatePayment(string $payment_id): mixed
   {
     $date_payment = '';
     // Создаем объекты для связи с БД.

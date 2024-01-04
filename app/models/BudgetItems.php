@@ -7,7 +7,6 @@
 
 namespace app\models;
 
-use app\models\AppModel;
 use R;
 
 /**
@@ -28,10 +27,10 @@ class BudgetItems extends AppModel
 
   /**
    * Возвращает массив данных о статьях расхода по идентификатору или о всех если он не указан
-   * @param int|bool $id идентификатор статьи расхода
+   * @param bool|int $id идентификатор статьи расхода
    * @return array|false
    */
-  public function getBudgetItems($id = false)
+  public function getBudgetItems(bool|int $id = false): bool|array
   {
     if ($id !== false) {
       $budgetItems = R::getAssocRow('SELECT * FROM budget_items WHERE id = ? LIMIT 1', [$id]);

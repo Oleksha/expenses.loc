@@ -11,6 +11,7 @@ use app\models\Budget;
 use app\models\BudgetItems;
 use app\models\Partner;
 use app\models\Payment;
+use JetBrains\PhpStorm\NoReturn;
 use PhpOffice\PhpSpreadsheet\Exception;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
@@ -88,7 +89,7 @@ class BudgetController extends AppController
    * @param float|string $vat_bo Ставка НДС проверяемой БО
    * @return float Сумма расходов по БО
    */
-  private function get_sum(array $payments, string $id_bo, $vat_bo): float
+  private function get_sum(array $payments, string $id_bo, float|string $vat_bo): float
   {
     $sum = 0.00; // расход по данной БО
     foreach ($payments as $payment) { // просматриваем все оплаты использующие нашу БО
@@ -112,7 +113,7 @@ class BudgetController extends AppController
   /**
    * Функция просмотра выбранной БО
    */
-  public function viewAction()
+  public function viewAction(): void
   {
     $id_bo = isset($_GET['id']) ? (int)$_GET['id'] : null;
     // Создаем объекты для работы с БД
@@ -173,7 +174,7 @@ class BudgetController extends AppController
   /**
    * Функция редактирования данных БО
    */
-  public function editAction()
+  public function editAction(): void
   {
     // Создаем объекты для работы с БД
     $budget_model = new Budget(); // Для бюджетных операций
@@ -207,7 +208,7 @@ class BudgetController extends AppController
    * @throws Exception
    * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
    */
-  public function reportAction()
+  public function reportAction(): void
   {
     $month = $_GET['m'] ?? null;
     $year = $_GET['y'] ?? null;
@@ -381,7 +382,7 @@ class BudgetController extends AppController
    * @throws Exception
    * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
    */
-  public function reportYearAction()
+  public function reportYearAction(): void
   {
     $year = $_GET['y'] ?? null;
     $months = array('01','02','03','04','05','06','07','08','09','10','11','12');
@@ -567,7 +568,7 @@ class BudgetController extends AppController
    * @return void
    * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
    */
-  public function uploadAction()
+  public function uploadAction(): void
   {
     unset($_SESSION['success']); // удаляем сессию с успешными сообщениями
     unset($_SESSION['error']);   // удаляем сессию с ошибочными сообщениями
@@ -628,7 +629,6 @@ class BudgetController extends AppController
             $bo_item = $bo_item[0];
             $bo['budget_item_id'] = $bo_item['id'];
           } else {
-            $success = false;
             $_SESSION['error'] .= "Все очень плохо. В БД отсутствует запись - {$item['Статья бюджета']}. Строка - $i ";
             $this->setMeta('Загрузка новых БО');
             return;
@@ -670,9 +670,9 @@ class BudgetController extends AppController
   /**
    * @return void
    */
-  public function uploadFileAction()
+  #[NoReturn] public function uploadFileAction(): void
   {
-
+    $res = [];
     if (!empty($_FILES)) {
       $path = WWW . '/uploads/'; // папка в которую будут складываться файлы
       if ($this->uploadFile('file', $path)) {

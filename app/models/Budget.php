@@ -7,7 +7,6 @@
 
 namespace app\models;
 
-use app\models\AppModel;
 use R;
 
 /**
@@ -34,11 +33,11 @@ class Budget extends AppModel
 
   /**
    * Возвращает данные БО по ее идентификатор или все БО
-   * @param int $id_bo идентификатор БО
-   * @param string $scenario сценарий
+   * @param bool|int $id_bo идентификатор БО
+   * @param bool|string $scenario сценарий
    * @return array|false
    */
-  public function getBudget($id_bo = false, $scenario = false)
+  public function getBudget(bool|int $id_bo = false, bool|string $scenario = false): bool|array
   {
     $sql = "SELECT budget.*, budget_items.name_budget_item FROM budget INNER JOIN budget_items ON budget.budget_item_id = budget_items.id WHERE status = 'Согласован' ";
     if ($id_bo) {
@@ -88,7 +87,7 @@ class Budget extends AppModel
     $bo = $this->getBudget($id_bo);
     $pay = [];
     // получаем все оплаты использующие эту БО
-    $payments = $payment_model->getPayment(null, $id_bo);
+    $payments = $payment_model->getPayment(false, $id_bo);
     if ($payments) {
       // проходимся по всем оплатам использующим это ЕР
       foreach ($payments as $payment) {
