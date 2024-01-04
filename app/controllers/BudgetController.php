@@ -12,10 +12,12 @@ use app\models\BudgetItems;
 use app\models\Partner;
 use app\models\Payment;
 use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\{Alignment, Border, Fill, NumberFormat};
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use R;
 
 /**
  * Класс обработки Бюджетных Операций (БО)
@@ -26,7 +28,7 @@ class BudgetController extends AppController
   /**
    * Контроллер главной страницы БО
    */
-  public function indexAction()
+  public function indexAction(): void
   {
     if (isset($_GET['filter'])) {
       // Получаем текущий сценарий.
@@ -63,7 +65,7 @@ class BudgetController extends AppController
       // Получаем расходы по выбранным БО
       foreach ($budgets as $k => $item) {
         // Получаем заявки на оплату использующие конкретную БО
-        $payments = $payment_model->getPayment(null, $item['id']);
+        $payments = $payment_model->getPayment(false, (int)$item['id']);
         // Рассчитываем израсходованную сумму с конкретной БО
         if ($payments) $budgets[$k]['payment'] = $this->get_sum($payments, (string)$item['id'], $item['vat']);
         else $budgets[$k]['payment'] = 0.00;
@@ -117,7 +119,7 @@ class BudgetController extends AppController
     $budget_model = new Budget(); // Для бюджетных операций
     $payment_model = new Payment(); // Для заявок на оплату
     $bo = $budget_model->getBudget($id_bo);
-    $payments = $payment_model->getPayment(null, $id_bo);
+    $payments = $payment_model->getPayment(false, $id_bo);
     // добавляем в массив дополнительные данные
     if ($payments) {
       $bo['payment'] = $this->get_sum($payments, $_GET['id'], $bo['vat']);
@@ -558,6 +560,176 @@ class BudgetController extends AppController
     // Прописываем полный путь до папки и указываем имя файла
     $writer->save(ROOT . '\Расходы_за_год.xlsx');
     redirect();
+  }
+
+  /**
+   * Функция загрузки данных из файла
+   * @return void
+   * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+   */
+  public function uploadAction()
+  {
+    unset($_SESSION['success']); // удаляем сессию с успешными сообщениями
+    unset($_SESSION['error']);   // удаляем сессию с ошибочными сообщениями
+    //unset($_SESSION['file']);
+    if (isset($_SESSION['file'])) {
+      $reader = IOFactory::createReader('Xlsx');
+      $spreadsheet = $reader->load(WWW . "/uploads/{$_SESSION['file']}");
+      $reader->setReadDataOnly(true);                 // Устанавливаем только чтение данных
+      $worksheet = $spreadsheet->getActiveSheet();    // считываем данные из активного листа
+      unlink(WWW . "/uploads/{$_SESSION['file']}");   // Удаляем файл. После доработки перенести удаление в конец
+      unset($_SESSION['file']);                       // удаляем сессию с именем обрабатываемого файла
+      $header = true;     // ключ, что это строка заголовков
+      $header_array = []; // массив содержащий заголовки столбцов
+      $row_array = [];    // массив со значениями текущей строки
+      $budget_array = []; // массив со значениями текущей строки*/
+      /* упорядочиваем полученные данные - начало */
+      foreach ($worksheet->getRowIterator() as $row) {
+        // обрабатываем очередную строку из файла
+        $i = 0;
+        $cellIterator = $row->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(true); // просматривать только заполненные ячейки
+        foreach ($cellIterator as $cell) {
+          if ($header) { // если это заголовок заполняем массив
+            $header_array[] = $cell->getValue(); // получаем наименования столбцов в массив
+          } else {        // если это строка с данными
+            $row_array[$header_array[$i]] = $cell->getValue();
+            $i = $i + 1;
+          }
+        }
+        if (!$header) $budget_array[] = $row_array; // если это не заголовок добавляем в массив данных
+        $header = false;
+      }
+      /* Упорядочиваем полученные данные - конец */
+      /* массив $budget_array содержит данные из файла */
+      /* преобразование данных для добавления в БД - начало */
+      $budget_obj = new Budget(); // экземпляр модели Budget
+      $budget_success = [];
+      $success = true;
+      $_SESSION['error'] = '';
+      $i = 2;
+      foreach ($budget_array as $item) {
+        // Обрабатываем только строки со статусом СОГЛАСОВАН и НА СОГЛАСОВАНИИ
+        if ($item['Статус документа'] != 'Не согласован' && $item['Статус документа'] != 'Формирование') {
+          $bo['scenario'] = $spreadsheet->getActiveSheet()->getTitle();  // сценарий берем из имени листа
+          $bo['month_exp'] = $this->dateChange($item['Месяц расходов']);
+          $bo['month_pay'] = $this->dateChange($item['Месяц оплаты']);
+          $bo['number'] = $item['Номер'];
+          $bo['summa'] = $item['Сумма'];
+          if ($item['Ставка НДС'] == 'Без НДС') {
+            $bo['vat'] = '1.00';
+          } elseif ($item['Ставка НДС'] == '20%') {
+            $bo['vat'] = '1.20';
+          } else {
+            $bo['vat'] = '1.10';
+          }
+          $bo_item = R::getAssocRow('SELECT * FROM budget_items WHERE name_budget_item = ?', [$item['Статья бюджета']]);
+          if ($bo_item) {
+            $bo_item = $bo_item[0];
+            $bo['budget_item_id'] = $bo_item['id'];
+          } else {
+            $success = false;
+            $_SESSION['error'] .= "Все очень плохо. В БД отсутствует запись - {$item['Статья бюджета']}. Строка - $i ";
+            $this->setMeta('Загрузка новых БО');
+            return;
+          }
+          $bo['status'] = $item['Статус документа'];
+          $bo['description'] = $item['Комментарий'];
+          $budget_success[] = $bo;
+        }
+        $i += 1;
+      }
+      $i = 0;
+      $y = 0;
+      if ($success) {
+        $_SESSION['success'] = 'Все прошло хорошо. ';
+        foreach ($budget_success as $item) {
+          $budget_obj->load($item);
+          // проверка на наличии БО с этим номером в БД
+          if (!$this->checkBO($item)) {
+            // БО нет в БД
+            $budget_obj->save('budget');
+            $i = $i + 1;
+          } else {
+            $id = $this->checkBO($item);
+            $budget_obj->edit('budget', $id);
+            $y = $y + 1;
+          }
+          unset($_SESSION['error']);
+        }
+        if ($i > 0) $_SESSION['success'] .= "Добавлено $i бюджетных операций. ";
+        if ($y > 0) $_SESSION['success'] .= "Исправлено $y бюджетных операций. ";
+      } else {
+        $_SESSION['error'] .= 'Все очень плохо. Ошибка загрузки файла. ';
+      }
+    }
+    // формируем метатеги для страницы
+    $this->setMeta('Загрузка новых БО');
+  }
+
+  /**
+   * @return void
+   */
+  public function uploadFileAction()
+  {
+
+    if (!empty($_FILES)) {
+      $path = WWW . '/uploads/'; // папка в которую будут складываться файлы
+      if ($this->uploadFile('file', $path)) {
+        $res = ['answer' => 'ok'];
+      } else {
+        $res = ['answer' => 'error', 'error' => 'Тестовая ошибка'];
+      }
+    }
+    exit(json_encode($res));
+  }
+
+  /**
+   * @param $name
+   * @param $path
+   * @return bool
+   */
+  public function uploadFile($name, $path): bool
+  {
+    $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name']));
+
+    $new_name = sha1(uniqid()) . ".$ext";
+    $uploadfile = $path.$new_name;
+    echo $uploadfile;
+    if (@move_uploaded_file($_FILES[$name]['tmp_name'], $uploadfile)) {
+      $_SESSION['file'] = $new_name;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Функция преобразования даты из 31.01.1999 в 1999-01-31
+   * @param $date_str
+   * @return string
+   */
+  public function dateChange($date_str): string
+  {
+    $year = substr($date_str, 6, 4);
+    $month = substr($date_str, 3, 2);
+    $day = substr($date_str, 0, 2);
+    return $year . '-' . $month . '-' . $day;
+  }
+
+  /**
+   * Проверяет есть ли в БД БО с таким номером
+   * @param array $data
+   * @return false|mixed
+   */
+  public function checkBO(array $data): mixed
+  {
+    $bo_item = R::getAssocRow('SELECT * FROM budget WHERE scenario = ? AND number = ?', [$data['scenario'], $data['number']]);
+    if ($bo_item) {
+      $bo_item = $bo_item[0];
+      return $bo_item['id'];
+    } else {
+      return false;
+    }
   }
 
 }

@@ -7,7 +7,6 @@
 
 namespace app\models;
 
-use app\models\AppModel;
 use R;
 
 /**
@@ -38,10 +37,10 @@ class Partner extends AppModel
 
   /**
    * Возвращает массив данных о КА по идентификатору или о всех если он не указан
-   * @param int|bool $id идентификатор КА или null
+   * @param bool|int $id идентификатор КА или null
    * @return array|false
    */
-  public function getPartner($id = false)
+  public function getPartner(bool|int $id = false): bool|array
   {
     if ($id !== false) {
       $partner = R::getAssocRow('SELECT * FROM partner WHERE id = ? LIMIT 1', [$id]);

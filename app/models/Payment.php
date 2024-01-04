@@ -39,23 +39,32 @@ class Payment extends AppModel
 
   /**
    * Возвращает массив всех заявок на оплату или конкретной заявки
-   * @param int $id идентификатор заявки
-   * @return array|false
+   * @param bool|int $id идентификатор заявки
+   * @param bool|int $id_bo идентификатор бюджетной операции
+   * @param bool|int $id_er идентификатор единоличного решения
+   * @return bool|array
    */
-  public function getPayment($id = false, $id_bo = false)
+  public function getPayment(bool|int $id = false, bool|int $id_bo = false, bool|int $id_er = false): bool|array
   {
     if ($id) {
       $payments = R::getAssocRow('SELECT * FROM payment WHERE id = ?', [$id]);
       if (!empty($payments)) return $payments[0];
     } else {
+      $payments_all = R::getAssocRow('SELECT * FROM payment');
       if ($id_bo) {
-        $payments_all = R::getAssocRow('SELECT * FROM payment');
         foreach ($payments_all as $item) {
           $ids = explode(';', $item['bos_id']);
           if (in_array($id_bo, $ids)) $payments[] = $item;
         }
-      } else {
-        $payments = R::getAssocRow('SELECT * FROM payment');
+      } elseif ($id_er) {
+        foreach ($payments_all as $payment) {
+          if (in_array($id, explode(';', $payment['ers_id']))) $payments[] = $payment;
+        }
+        if (!empty($payments)) return $payments;
+        return false;
+      }
+      else {
+        $payments = $payments_all;
       }
       if (!empty($payments)) return $payments;
     }

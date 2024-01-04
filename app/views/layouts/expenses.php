@@ -21,6 +21,9 @@ if (!isset($_SESSION['user'])) {
   <link rel="stylesheet" href="assets/bootstrap-5.3.2-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/DataTables/datatables.min.CSS">
   <link rel="stylesheet" href="assets/chosen/chosen.min.css">
+  <?php if ($this->route['controller'] == 'Budget' && $this->route['action'] == 'upload'): ?>
+    <link href="assets/Dropzone/dropzone.css" rel="stylesheet" type="text/css">
+  <?php endif; ?>
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -102,5 +105,6 @@ if (!isset($_SESSION['user'])) {
     echo $script;
   }
   ?>
+  <script type="text/javascript" src="js/main.js?<?php echo time(); ?>"></script>
 </body>
 </html>

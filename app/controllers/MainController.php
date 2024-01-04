@@ -31,7 +31,7 @@ class MainController extends AppController
     if ($receipts) {
       foreach ($receipts as $k => $v) {
         // Получаем всю информацию о контрагенте
-        $partner = $partners->getPartner($v['id_partner']);
+        $partner = $partners->getPartner((int)$v['id_partner']);
         if ($partner) { // Если КА существует,
           // дописываем в массив его ID и наименование
           $receipts[$k]['partner_id'] = $partner['id'];
@@ -41,7 +41,7 @@ class MainController extends AppController
           // задержка
           $receipts[$k]['delay'] = $partner['delay'] ?? null;
           if ($receipts[$k]['pay_id']) {
-            $receipts[$k]['pay'] = $payment_model->getPayment($receipts[$k]['pay_id']);
+            $receipts[$k]['pay'] = $payment_model->getPayment((int)$receipts[$k]['pay_id']);
           }
         }
       }
