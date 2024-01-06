@@ -11,6 +11,7 @@ use app\models\BudgetItems;
 use app\models\Er;
 use app\models\Partner;
 use app\models\Payment;
+use Exception;
 use R;
 
 /**
@@ -51,7 +52,7 @@ class ErController extends AppController
 
   /**
    * Редактирование существующей ЕР
-   * @throws \Exception
+   * @throws Exception
    */
   public function editAction(): void
   {
@@ -72,7 +73,7 @@ class ErController extends AppController
       // Если у нас есть ID получаем все данные об этом единоличном решении.
       $er = $er_models->getEr($id);
       // Если данных не получены дальнейшие действия бессмысленны.
-      if (!$er) throw new \Exception("Не получены данные по выбранному ID", 199);
+      if (!$er) throw new Exception("Не получены данные по выбранному ID", 199);
       // Получаем данные о контрагенте.
       $partner = $partner_models->getPartner((int)$er['id_partner']);
       // Получаем данные о всех статьях расходов для поля со списком.
@@ -87,7 +88,7 @@ class ErController extends AppController
 
   /**
    * Просмотр платежей по ЕР
-   * @throws \Exception
+   * @throws Exception
    */
   public function viewAction(): void
   {
@@ -100,7 +101,7 @@ class ErController extends AppController
       // Если у нас есть номер получаем все данные об этом ЕР.
       $er = $er_models->getEr($id);
       // Если данных не получены дальнейшие действия бессмысленны.
-      if (!$er) throw new \Exception("Не получены данные по выбранному ID", 199);
+      if (!$er) throw new Exception("Не получены данные по выбранному ID", 199);
       // Если у нас есть ЕР получаем данные об оплатах использующих это ЕР
       $payments = $payment_models->getPayment(false, false, $id);
       if ($this->isAjax()) {

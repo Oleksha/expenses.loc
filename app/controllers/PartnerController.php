@@ -24,26 +24,26 @@ class PartnerController extends AppController
    */
   public function indexAction(): void
   {
-    // создаем необходимые объекты связи с БД
-    $partner_models = new Partner(); // Для контрагенты
-    $er_models = new Er();           // Для единоличных решений
-    $receipt_models = new Receipt(); // Для поступлений товаров и услуг
-    // получаем информацию обо всех КА
+    // Создаем необходимые объекты связи с БД.
+    $partner_models = new Partner(); // Для контрагенты.
+    $er_models = new Er();           // Для единоличных решений.
+    $receipt_models = new Receipt(); // Для поступлений товаров и услуг.
+    // Получаем информацию обо всех КА.
     $partners = $partner_models->getPartner();
     foreach ($partners as $k => $partner) {
-      // Получаем количество действующих ЕР
+      // Получаем количество действующих ЕР.
       $date_now = date("Y-m-d");
       $ers = $er_models->getERFromDate((int)$partner['id'], $date_now);
       $partners[$k]['er'] = $ers ? count($ers) : 0;
-      // Получаем сумму дебиторской задолженности
+      // Получаем сумму дебиторской задолженности.
       $sum = 0;
-      $receipts = $receipt_models->getReceiptNoPay((int)$partner['id']); // получаем неоплаченные поступления
-      if ($receipts) foreach ($receipts as $receipt) $sum += $receipt['sum']; // подсчитываем сумму задолженности
+      $receipts = $receipt_models->getReceiptNoPay((int)$partner['id']); // Получаем неоплаченные поступления.
+      if ($receipts) foreach ($receipts as $receipt) $sum += $receipt['sum']; // Подсчитываем сумму задолженности.
       $partners[$k]['sum'] = $sum;
     }
-    // формируем метатеги для страницы
+    // Формируем метатеги для страницы.
     $this->setMeta('Список активных контрагентов', 'Содержит список активных КА с дополнительной информацией о каждом', 'контрагент,дебиторская,задолженность,отсрочка,ер,единоличные,решения');
-    // Передаем полученные данные в вид
+    // Передаем полученные данные в вид.
     $this->set(compact('partners'));
   }
 
@@ -53,24 +53,24 @@ class PartnerController extends AppController
    */
   public function viewAction(): void
   {
-    // создаем необходимые объекты связи с БД
-    $partner_models = new Partner(); // Для контрагентов
-    $er_models = new Er();           // Для единоличных решений
-    $receipt_models = new Receipt(); // Для приходов
-    // получение ID запрашиваемого контрагента
+    // Создаем необходимые объекты связи с БД.
+    $partner_models = new Partner(); // Для контрагентов.
+    $er_models = new Er();           // Для единоличных решений.
+    $receipt_models = new Receipt(); // Для приходов.
+    // Получение ID запрашиваемого контрагента.
     $id = (int)$this->route['id'];
-    // получение данных по КА из БД
+    // Получение данных по КА из БД.
     $partner = $partner_models->getPartner($id);
     if (!$partner) throw new Exception('Контрагент с ID ' . $id . ' не найден', 500);
     /* ----- ЕДИНОЛИЧНЫЕ РЕШЕНИЯ ----- */
     $date_now = date("Y-m-d");
-    $ers = $er_models->getERFromDate((int)$partner['id'], $date_now); // Действующие на данный момент ЕР
-    $ers_all = $er_models->getEr(false,(int)$partner['id']);       // Все ЕР в базе данных
+    $ers = $er_models->getERFromDate((int)$partner['id'], $date_now); // Действующие на данный момент ЕР.
+    $ers_all = $er_models->getEr(false,(int)$partner['id']);       // Все ЕР в базе данных.
     $diff = my_array_diff($ers_all, $ers); // Не действующие на сегодня ЕР.
-    // Добавляем в массив данные по расходам этого ЕР
+    // Добавляем в массив данные по расходам этого ЕР.
     if ($ers) {
       foreach ($ers as $k => $er) {
-        // получаем расходы по этому ЕР
+        // получаем расходы по этому ЕР.
         $ers[$k]['costs'] = $er_models->getERCosts((int)$er['id']);
       }
     }
@@ -79,14 +79,14 @@ class PartnerController extends AppController
     $receipt = $receipt_models->getReceipt('id_partner', $id);
     if ($receipt) {
       foreach ($receipt as $k => $v) {
-        // Добавляем тип прихода (оплаченный, неоплаченный, поданный на оплату)
+        // Добавляем тип прихода (оплаченный, неоплаченный, поданный на оплату).
         $receipt[$k]['type'] = $receipt_models->isTypeReceipt((int)$v['id']);
       }
     }
     /* ------------ КОНЕЦ ------------ */
-    // формируем метатеги для страницы
+    // Формируем метатеги для страницы.
     $this->setMeta($partner['name'], 'Наименование КА');
-    // Передаем полученные данные в вид
+    // Передаем полученные данные в вид.
     $this->set(compact('partner', 'ers', 'diff', 'receipt'));
   }
 
