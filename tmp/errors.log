@@ -1,0 +1,60 @@
+[2024-01-04 13:31:57] Текст ошибки: Метод app\controllers\PartnerController::viewAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-04 13:48:41] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 72
+--------------------
+[2024-01-04 13:49:33] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 160
+--------------------
+[2024-01-04 13:49:55] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 246
+--------------------
+[2024-01-04 13:50:20] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 360
+--------------------
+[2024-01-04 13:50:44] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 419
+--------------------
+[2024-01-04 13:51:48] Текст ошибки: Контроллер app\controllers\ErController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-05 09:51:31] Текст ошибки: Файл вида F:\OSPanel\domains\expenses.loc/app/views/Partner/add.php не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 107
+--------------------
+[2024-01-05 09:51:31] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 09:55:03] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 09:55:32] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 09:57:33] Текст ошибки: Метод app\controllers\PartnerController::editAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+--------------------
+[2024-01-05 10:05:57] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 10:06:42] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 10:09:42] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 10:13:50] Текст ошибки: Контроллер app\controllers\ErController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-05 11:16:39] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-05 11:24:03] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-05 11:24:10] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+--------------------
+[2024-01-05 11:25:40] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 11:26:30] Текст ошибки: Failed opening required 'F:\OSPanel\domains\expenses.loc/app/views/Er/edit.php' (include_path='.') | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\Controller.php | Строка: 118
+--------------------
+[2024-01-05 11:50:07] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 11:50:19] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 11:51:39] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 11:53:33] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 11:53:39] Текст ошибки: Class "app\controllers\Payment" not found | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ErController.php | Строка: 93
+--------------------
+[2024-01-05 12:04:36] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 12:10:12] Текст ошибки: Undefined constant "app\controllers\id" | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ErController.php | Строка: 98
+--------------------
+[2024-01-05 12:44:39] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------
+[2024-01-05 12:54:36] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+--------------------

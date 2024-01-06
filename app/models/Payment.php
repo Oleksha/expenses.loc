@@ -57,7 +57,7 @@ class Payment extends AppModel
         }
       } elseif ($id_er) {
         foreach ($payments_all as $payment) {
-          if (in_array($id, explode(';', $payment['ers_id']))) $payments[] = $payment;
+          if (in_array($id_er, explode(';', $payment['ers_id']))) $payments[] = $payment;
         }
         if (!empty($payments)) return $payments;
         return false;

@@ -70,4 +70,26 @@ class Receipt extends AppModel
     return false;
   }
 
+  /**
+   * Возвращает текущий тип поступления
+   * (1 - просмотр - для уже оплаченных поступлений)
+   * (2 - редактор - поданные на оплату, но еще не оплаченные поступления)
+   * (3 - оплата - не поданные на оплату (по умолчанию))
+   * @param int $id номер поступления товаров или услуг
+   * @return int
+   */
+  public function isTypeReceipt(int $id): int  {
+    $isType = 3;
+    $receipt = $this->getReceipt('id', $id);
+    if ($receipt) {
+      $receipt = $receipt[0];
+      if (!empty($receipt['date_pay'])) {
+        $isType = 1;
+      } elseif (!empty($receipt['pay_id'])) {
+        $isType = 2;
+      }
+    }
+    return $isType;
+  }
+
 }

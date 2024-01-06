@@ -34,14 +34,18 @@ class Er extends AppModel
    * @param bool|int $id идентификатор ЕР или null
    * @return array|false
    */
-  public function getEr(bool|int $id = false): bool|array
+  public function getEr(bool|int $id = false, $id_partner = false): bool|array
   {
     if ($id !== false) {
       $er = R::getAssocRow('SELECT * FROM er WHERE id = ? LIMIT 1', [$id]);
       if (!empty($er)) return $er[0];
     } else {
-      $er = R::getAssocRow('SELECT * FROM er ORDER BY data_start');
-      if (!empty($er)) return $er;
+      if ($id_partner) {
+        return R::getAll('SELECT er.*, budget_items.name_budget_item FROM er, budget_items WHERE (budget_items.id = er.id_budget_item) AND id_partner = ? ORDER BY budget_items.name_budget_item', [$id_partner]);
+      } else {
+        $er = R::getAssocRow('SELECT er.*, budget_items.name_budget_item FROM er, budget_items WHERE (budget_items.id = er.id_budget_item) ORDER BY budget_items.name_budget_item');
+        if (!empty($er)) return $er;
+      }
     }
     return false;
   }
