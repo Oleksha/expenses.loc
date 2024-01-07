@@ -35,9 +35,10 @@ class Budget extends AppModel
    * Возвращает данные БО по ее идентификатор или все БО
    * @param bool|int $id_bo идентификатор БО
    * @param bool|string $scenario сценарий
+   * @param bool|string $num_bo номер БО в виде CUB0000000000/2022
    * @return array|false
    */
-  public function getBudget(bool|int $id_bo = false, bool|string $scenario = false): bool|array
+  public function getBudget(bool|int $id_bo = false, bool|string $scenario = false, bool|string $num_bo = false): bool|array
   {
     $sql = "SELECT budget.*, budget_items.name_budget_item FROM budget INNER JOIN budget_items ON budget.budget_item_id = budget_items.id WHERE status = 'Согласован' ";
     if ($id_bo) {
@@ -46,6 +47,13 @@ class Budget extends AppModel
     } else {
       if ($scenario) {
         $bo = R::getAssocRow($sql . "AND scenario = ? ORDER BY number", [$scenario]);
+      } elseif ($num_bo) {
+        $bo = [];
+        if (strpos($num_bo, '/')) {
+          $bos = explode('/', $num_bo);
+          $bo_arr = R::getAssocRow("SELECT * FROM budget WHERE status = 'Согласован' AND YEAR(scenario) = ? AND number = ?", [$bos[1], $bos[0]]);
+          if ($bo_arr) $bo = $bo_arr[0];
+        }
       } else {
         $bo = R::getAssocRow($sql . "ORDER BY scenario, number");
       }

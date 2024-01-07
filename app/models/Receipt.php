@@ -24,7 +24,7 @@ class Receipt extends AppModel
     'number' => '',
     'sum' => '',
     'type' => '',
-    'vat_id' => '',
+    'vat_id' => 0,
     'id_partner' => 0,
     'num_doc' => '',
     'date_doc' => '',
@@ -45,6 +45,22 @@ class Receipt extends AppModel
     $receipts = R::getAssocRow("SELECT * FROM receipt WHERE $field = ? ORDER BY date", [$value]);
     if (!empty($receipts)) return $receipts;
     return false;
+  }
+
+  /**
+   * Функция возвращающая массив полных данных по приходам
+   * @param array $ids Строка ID приходов оплачиваемых данной ЗО
+   * @return array Полные данные о приходах
+   */
+  public function getReceipts(array $ids): array
+  {
+    $receipts = []; // Объявляем возвращаемый массив.
+    // Проходимся по всем элементам полученного массива поступлений.
+    foreach ($ids as $id) {
+      $receipt_full = R::getAssocRow("SELECT * FROM receipt WHERE id = ?", [$id]);
+      if (!empty($receipt_full))  $receipts[] = $receipt_full[0];
+    }
+    return $receipts;
   }
 
   /**

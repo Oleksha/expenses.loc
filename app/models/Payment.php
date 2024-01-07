@@ -41,9 +41,10 @@ class Payment extends AppModel
    * @param bool|int $id идентификатор заявки
    * @param bool|int $id_bo идентификатор бюджетной операции
    * @param bool|int $id_er идентификатор единоличного решения
+   * @param bool|int $id_receipt идентификатор поступления
    * @return bool|array
    */
-  public function getPayment(bool|int $id = false, bool|int $id_bo = false, bool|int $id_er = false): bool|array
+  public function getPayment(bool|int $id = false, bool|int $id_bo = false, bool|int $id_er = false, bool|int $id_receipt = false): bool|array
   {
     if ($id) {
       $payments = R::getAssocRow('SELECT * FROM payment WHERE id = ?', [$id]);
@@ -60,6 +61,12 @@ class Payment extends AppModel
           if (in_array($id_er, explode(';', $payment['ers_id']))) $payments[] = $payment;
         }
         if (!empty($payments)) return $payments;
+        return false;
+      } elseif ($id_receipt) {
+        foreach ($payments_all as $payment) {
+          if (in_array($id_receipt, explode(';', $payment['receipts_id']))) $payments[] = $payment;
+        }
+        if (!empty($payments)) return $payments[0];
         return false;
       }
       else {

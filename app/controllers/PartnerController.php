@@ -10,7 +10,9 @@ namespace app\controllers;
 use app\models\Er;
 use app\models\Partner;
 use app\models\PartnerType;
+use app\models\Payment;
 use app\models\Receipt;
+use app\models\Vat;
 use Exception;
 
 /**
@@ -166,6 +168,47 @@ class PartnerController extends AppController
       $this->loadView('edit', compact('types'));
     }
     redirect();
+  }
+
+  /**
+   * Обработка заявки на оплату
+   */
+  public function paymentAction(): void
+  {
+    // Получаем переданные GET данные.
+    $receipt_id = !empty($_GET['receipt']) ? (int)$_GET['receipt'] : null; // Идентификатор прихода.
+    $type = !empty($_GET['type']) ? (int)$_GET['type'] : null; // Тип выводимой информации.
+    $parent = !empty($_GET['parent']) ? $_GET['parent'] : null; // Откуда пришел запрос.
+    // Создаем объекты для работы с БД.
+    $receipt_model = new Receipt(); // Для приходов.
+    $partner_model = new Partner(); // Для контрагентов.
+    $er_model = new Er();           // Для единоличных решений.
+    $payment_model = new Payment(); // Для заявок на оплату.
+    $vat_model = new Vat();         // Для ставок НДС.
+    // Получаем все ставки НДС для заполнения поля со списком.
+    $vats = $vat_model->getVat();
+    // Получаем данные о заявке на оплату если она есть.
+    $payment = $payment_model->getPayment(false, false, false, $receipt_id);
+    // Получаем всю данные о текущем поступлении.
+    $receipt = $receipt_model->getReceipt('id', $receipt_id);
+    $receipt = $receipt[0];
+    // Получаем данные обо всех неоплаченных поступлениях КА.
+    $receipt_all = $receipt_model->getReceiptNoPay((int)$receipt['id_partner']);
+    // Получаем всю информацию о КА.
+    $partner = $partner_model->getPartner((int)$receipt['id_partner']);
+    // Получаем все действующие ЕР для этого КА на момент прихода
+    $ers = $er_model->getERFromDate((int)$partner['id'], $receipt['date']);
+    $er = [];
+    foreach ($ers as $k => $v) {
+      $er[$k]['id'] = $v['id'];                    // Идентификатор.
+      $er[$k]['budget'] = $v['name_budget_item'];  // Статья расхода.
+      $er[$k]['number'] = $v['number'];            // Номер ЕР.
+    }
+    $ers = $er;
+    // Формируем метатеги для страницы.
+    $this->setMeta('Заявка на оплату - ' . $partner['name'], 'Заявка на оплату');
+    // Передаем полученные данные в вид.
+    $this->set(compact('payment', 'receipt', 'receipt_all', 'partner', 'ers', 'type', 'parent', 'vats'));
   }
 
 }

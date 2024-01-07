@@ -1,76 +1,68 @@
-[2024-01-04 13:31:57] Текст ошибки: Метод app\controllers\PartnerController::viewAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+[2024-01-06 13:55:26] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-04 13:48:41] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 72
+[2024-01-06 13:55:49] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-04 13:49:33] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 160
+[2024-01-06 13:58:12] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-04 13:49:55] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 246
+[2024-01-06 13:58:40] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-04 13:50:20] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 360
+[2024-01-06 13:58:40] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-04 13:50:44] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\view.php | Строка: 419
+[2024-01-06 14:00:29] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-04 13:51:48] Текст ошибки: Контроллер app\controllers\ErController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-06 14:01:23] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 09:51:31] Текст ошибки: Файл вида F:\OSPanel\domains\expenses.loc/app/views/Partner/add.php не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\View.php | Строка: 107
+[2024-01-06 14:03:57] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 168
 --------------------
-[2024-01-05 09:51:31] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:04:00] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 168
 --------------------
-[2024-01-05 09:55:03] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:09:13] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 09:55:32] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:09:17] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 09:57:33] Текст ошибки: Метод app\controllers\PartnerController::editAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
+[2024-01-06 14:09:21] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 10:05:57] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:09:25] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 10:06:42] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:09:26] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 10:09:42] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 14:09:47] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 10:13:50] Текст ошибки: Контроллер app\controllers\ErController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-06 14:09:47] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 11:16:39] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-06 14:51:49] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 11:24:03] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-06 14:56:14] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\PartnerController.php | Строка: 192
 --------------------
-[2024-01-05 11:24:10] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-06 15:02:34] Текст ошибки: syntax error, unexpected token ";", expecting ")" | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\PartnerController.php | Строка: 194
 --------------------
-[2024-01-05 11:25:40] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 15:05:07] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 168
 --------------------
-[2024-01-05 11:26:30] Текст ошибки: Failed opening required 'F:\OSPanel\domains\expenses.loc/app/views/Er/edit.php' (include_path='.') | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\base\Controller.php | Строка: 118
+[2024-01-06 15:05:14] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 168
 --------------------
-[2024-01-05 11:50:07] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 15:05:58] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 11:50:19] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 15:11:14] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 11:51:39] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 15:14:27] Текст ошибки: number_format(): Argument #1 ($num) must be of type float, string given | Файл: F:\OSPanel\domains\expenses.loc\app\views\Partner\payment.php | Строка: 96
 --------------------
-[2024-01-05 11:53:33] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 15:15:04] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 11:53:39] Текст ошибки: Class "app\controllers\Payment" not found | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ErController.php | Строка: 93
+[2024-01-06 17:17:38] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 12:04:36] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-06 17:18:34] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 12:10:12] Текст ошибки: Undefined constant "app\controllers\id" | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ErController.php | Строка: 98
+[2024-01-07 09:06:04] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 12:44:39] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-07 09:06:09] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-05 12:54:36] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-07 09:10:26] Текст ошибки: explode(): Argument #2 ($string) must be of type string, null given | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ReceiptController.php | Строка: 277
 --------------------
-[2024-01-06 09:11:35] Текст ошибки: Контроллер app\controllers\ReceiptController не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 80
+[2024-01-07 12:09:03] Текст ошибки: Call to undefined method app\models\Budget::getBo() | Файл: F:\OSPanel\domains\expenses.loc\app\controllers\ReceiptController.php | Строка: 142
 --------------------
-[2024-01-06 09:39:23] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-07 12:17:56] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------
-[2024-01-06 10:54:38] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-07 12:17:59] Текст ошибки: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `expenses`.`receipt`.`vat_id` at row 1 | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\libs\rb.php | Строка: 838
 --------------------
-[2024-01-06 10:54:53] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
---------------------
-[2024-01-06 10:55:55] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
---------------------
-[2024-01-06 10:56:24] Текст ошибки: Метод app\controllers\ReceiptController::delAction не найден | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 77
---------------------
-[2024-01-06 10:56:24] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
---------------------
-[2024-01-06 11:00:45] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
+[2024-01-07 12:19:28] Текст ошибки: Страница не найдена | Файл: F:\OSPanel\domains\expenses.loc\vendor\expenses\core\Router.php | Строка: 83
 --------------------

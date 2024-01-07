@@ -61,7 +61,7 @@ class BudgetController extends AppController
     $budget_model = new Budget(); // Для бюджетных операций
     $payment_model = new Payment(); // Для заявок на оплату
     // Получение данных из БД соответственно сценарию
-    $budgets = $budget_model->getBudget(null, $scenario);
+    $budgets = $budget_model->getBudget(false, $scenario);
     if ($budgets) {
       // Получаем расходы по выбранным БО
       foreach ($budgets as $k => $item) {
